@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+ 
+ <head>
+  
+  <!-- Link to the Bootstrap CSS from a CDN -->
+  
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"
+          rel="stylesheet">
+ 
+ </head>
+ 
+ <body>
+  <div class="container-fluid">
+      <div class=""row>
+         <div class="col-sm-12 col-md-7">
+             <div class ="panel panel-default">
+                <div class="panel-body">
+                   <h3> Add a New Account </h3>
+
+                      <form class ="form-horizaontal" role="form" action="" method="post">
+                           {% csrf_token %}
+                           {% include 'form-template.html'%}
+                            <div class="form-group">
+                              <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                              </div>
+                           </div>  
+                      </form>
+                 </div>
+              </div>
+          </div>
+      </div>
+  </div>
+ </body>
+ 
+
+ 
+</body>
+
+</html>

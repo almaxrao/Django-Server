@@ -1,0 +1,168 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
+
+<script>
+
+
+//this is tested and correct function, i am now building another func
+function myFunction() {
+
+    //It is getting API , its getting product list
+
+
+
+
+    var $orders=$('#orders');
+     console.log("hi");
+    var id=1;
+    $.ajax({
+        type:'GET',
+        url:'/api/pl',
+
+        dataType: 'json',
+        success:function (orders) {
+            $.each(orders,function (i,order) {
+
+
+                $orders.append('<div id='+order.product_id+' onclick = alert(this.id) > name: '
+                + order.product_name + ',price: ' +order.product_price + ',description: '+order.product_detail+
+                '<button id='+order.product_id+' onclick = myFunction3(this) > Add to Cart</button>  </div>');
+
+            });
+
+        },
+        error: function () {
+            alert('error loading products');
+        }
+    });
+
+
+}
+
+
+
+
+
+
+
+
+
+function myFunction2() {
+
+    //It is getting API , its getting product list
+
+
+
+    var $orders=$('#orders');
+     console.log("hi");
+    var id=1;
+    $.ajax({
+        type:'GET',
+
+        url:'/restapp/pd/' +id,
+        dataType: 'json',
+        success:function (order) {
+
+
+                console.log(order)
+                $orders.append('<div id='+order.product_id+'  onclick='+alert(this.id)+'> name: ' + order.product_name + ',price: ' +order.product_price + ',description: '+order.product_detail);
+
+
+
+        },
+        error: function () {
+            alert('error loading products');
+        }
+    });
+
+
+}
+
+
+
+function myFunction3(param) {
+  var order={
+         cart_products  :param.id,
+
+        };
+
+    $.ajax({
+
+
+        type:'POST',
+        url:'/user/at',
+        data:order,
+        success:function (newOrder) {
+
+                $orders.append('<li> name: ' + newOrder.cart_products );
+                 alert('Alhamdu Lillah');
+
+                   },
+        error: function () {
+            alert('error saving product');
+        }
+    });
+
+}
+
+
+
+
+
+function newFunction() {
+
+    //It is getting API , its getting product list
+
+
+
+
+    var $orders=$('#orders');
+     console.log("hi");
+    var id=1;
+    $.ajax({
+        type:'GET',
+        url:'/api/pl',
+
+        dataType: 'json',
+        success:function (orders) {
+            $.each(orders,function (i,order) {
+
+
+                $orders.append('<form ><div   > name: '
+                + order.product_name + ',price: ' +order.product_price + ',description: '+order.product_detail+
+                ' <input id='+order.product_id+' type="submit" name="submit" value="Add to Cart" onclick = myFunction3(this)>  </div></form>');
+
+            });
+
+        },
+        error: function () {
+            alert('error loading products');
+        }
+    });
+
+
+}
+
+
+
+
+
+</script>
+</head>
+
+<body>
+
+<ul id="orders"  > </ul>
+<div id="hello" onclick = "alert(this.id)">
+    <p> click me pleeeeeeeeasse
+    </p>
+</div>
+<button onclick="newFunction()">Click me for Product List</button>
+<button onclick="myFunction2()">Click me for Specific Product Detail</button>
+
+
+</body>
+
+</html>

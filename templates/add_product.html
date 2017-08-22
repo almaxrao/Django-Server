@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+<script>
+
+$("#f1").submit(function() {
+          var order={
+         product_name  :$product_name.val(),
+            product_price:$product_price.val(),
+            product_detail:$product_detail.val(),
+        };
+
+    $.ajax({
+
+
+        type:'POST',
+        url:'/restapp/pl',
+        data:order,
+        success:function (newOrder) {
+
+                $orders.append('<li> name: ' + newOrder.product_name + ',price: ' +newOrder.product_price + ',description: '+newOrder.product_detail);
+
+                   },
+        error: function () {
+            alert('error saving product');
+        }
+    });
+
+});
+
+
+
+</script>
+</head>
+
+<body>
+
+ <form id="f1" method="post">
+     {% csrf_token %}
+     <ul>
+         {{ form.as_ul }}
+     </ul>
+
+     <input type="submit" name="submit" value="Add">
+
+ </form>
+
+<ul id="orders"> </ul>
+
+</body>
+</html>

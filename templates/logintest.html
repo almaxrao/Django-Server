@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<!-- <p>Click <a href="/polls/with_login/"> here </a> to go with login </p> -->
+
+<p>Click <a href="{% url 'with_login' %}?next={{request.path}}" >here  </a> to go with login </p>
+<p>Click <a href="/polls/without_login/"> here </a>to go without login</p>
+
+
+</body>
+</html>
